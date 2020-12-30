@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-user-api-deployment
+  name: udagram-feed-api-deployment
   labels:
-    app: udagram-user-api
+    app: udagram-feed-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-user-api
+      app: udagram-feed-api
   template:
     metadata:
       labels:
-        app: udagram-user-api
+        app: udagram-feed-api
     spec:
       containers:
-      - name: udagram-user-api
-        image: guilhermecamacho/udagram-user-api
+      - name: udagram-feed-api
+        image: guilhermecamacho/udagram-feed-api
         imagePullPolicy: Always
         resources:
           requests:

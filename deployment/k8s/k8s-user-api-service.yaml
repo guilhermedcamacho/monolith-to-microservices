@@ -13,7 +13,3 @@ spec:
     targetPort: 8081
   selector:
     app: udagram-user-api
-#   sessionAffinity: None
-#   type: ClusterIP
-# status:
-#   loadBalancer: {}
