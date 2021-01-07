@@ -18,8 +18,8 @@ script:
   - docker build -t udagram-user-api udagram-user-api
   - docker tag udagram-user-api guilhermecamacho/udagram-user-api:latest
 
-  - docker build -t udagram-user-feed udagram-user-feed
-  - docker tag udagram-user-feed guilhermecamacho/udagram-user-feed:latest
+  - docker build -t udagram-feed-api udagram-feed-api
+  - docker tag udagram-feed-api guilhermecamacho/udagram-feed-api:latest
 
   - docker build -t udagram-frontend udagram-frontend
   - docker tag udagram-frontend guilhermecamacho/udagram-frontend:latest
