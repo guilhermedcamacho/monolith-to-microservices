@@ -10,7 +10,7 @@ services:
         - udagram-feed-api     
   udagram-user-api:
     image: guilhermecamacho/udagram-user-api
-    container_name: user-api
+    container_name: udagram-user-api
     ports:
         - 8081:8081
     volumes:
@@ -27,7 +27,7 @@ services:
       URL: "http://localhost:8100"
   udagram-feed-api:
     image: guilhermecamacho/udagram-feed-api
-    container_name: feed-api
+    container_name: udagram-feed-api
     ports:
         - 8082:8082
     volumes:
