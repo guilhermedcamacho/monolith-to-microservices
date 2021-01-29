@@ -3,9 +3,9 @@ kind: Service
 metadata:
   labels:
     app: udagram-user-api
-  name: udagram-user-api-svc
+  name: udagram-user-api
   namespace: default
-  selfLink: /api/v1/namespaces/default/services/udagram-user-api-svc
+  selfLink: /api/v1/namespaces/default/services/udagram-user-api
 spec:
   ports:
   - port: 8081
