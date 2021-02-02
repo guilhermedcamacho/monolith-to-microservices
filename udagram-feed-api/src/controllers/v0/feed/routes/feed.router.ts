@@ -5,6 +5,7 @@ import * as jwt from 'jsonwebtoken';
 import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
 
+const { v4: uuidv4 } = require('uuid');
 const router: Router = Router();
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
@@ -26,22 +27,45 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   });
 }
 
+export function logStartedLog(req: Request): string {
+  let username = req.params.username;
+  let pid = uuidv4();
+
+  console.log(new Date().toLocaleString() + `: ${pid} - User ${username} requested for resource`);
+
+  return pid;
+}
+
+export function logFinishedProcess(req: Request, pid: string) {
+  let username = req.params.username;
+
+  console.log(new Date().toLocaleString() + `: ${pid} - Finished processing request for ${username}`);
+}
+
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+  let pid = logStartedLog(req);
+
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
     }
   });
+
+  logFinishedProcess(req, pid);
   res.send(items);
 });
 
 // Get a feed resource
 router.get('/:id',
     async (req: Request, res: Response) => {
+      let pid = logStartedLog(req);
+
       const {id} = req.params;
       const item = await FeedItem.findByPk(id);
+
+      logFinishedProcess(req, pid);
       res.send(item);
     });
 
